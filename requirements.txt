@@ -1,0 +1,8 @@
+Django
+django-debug-toolbar
+django-model-utils
+djangorestframework
+requests
+beautifulsoup4
+aiohttp[speedups]
+gunicorn
