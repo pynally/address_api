@@ -1,13 +1,13 @@
 import asyncio
 import aiohttp
-import json
-from datetime import datetime, timedelta
-from bs4 import BeautifulSoup as bs
-import re
 from address_api.settings.secret import Secret
 
 
 async def address_ko(keyword):
+    """ request two types of addresses in Korean (Jibun, load)
+    :param keyword:
+    :return: dictionary type of Korean address
+    """
     secret_key = Secret.JUSO_KO_KEY
     url = "https://www.juso.go.kr/addrlink/addrLinkApi.do"
     payload = {'confmKey': secret_key, 'currentPage': "1", 'countPerPage': "5",
@@ -18,6 +18,10 @@ async def address_ko(keyword):
 
 
 async def address_en(keyword):
+    """ request one types of addresses in English
+    :param keyword:
+    :return: dictionary type of English address
+    """
     secret_key = Secret.JUSO_EN_KEY
     url = "https://www.juso.go.kr/addrlink/addrEngApi.do"
     payload = {'confmKey': secret_key, 'currentPage': "1", 'countPerPage': "5",
@@ -28,4 +32,8 @@ async def address_en(keyword):
 
 
 async def address_main(keyword):
+    """ call async address functions
+    :param keyword:
+    :return:
+    """
     return await asyncio.gather(address_ko(keyword), address_en(keyword))
