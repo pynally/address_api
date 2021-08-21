@@ -6,3 +6,7 @@ requests
 beautifulsoup4
 aiohttp[speedups]
 gunicorn
+celery
+django_redis
+django-celery-beat
+django-celery-results
